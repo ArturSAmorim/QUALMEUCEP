@@ -23,21 +23,6 @@ API:
 
 https://viacep.com.br/
 
-Exemplo de consulta:
-
-```text
-https://viacep.com.br/ws/01001000/json/
-```
-
-A API retorna informações como:
-
-* CEP
-* Logradouro
-* Complemento
-* Bairro
-* Cidade
-* Estado
-
 ## 🏗️ Estrutura do projeto
 
 ```text
@@ -86,61 +71,6 @@ Jetpack Compose
         ↓
 Informações exibidas na tela
 ```
-
-## 📦 Modelo de dados
-
-A resposta da API é representada pela `data class Address`:
-
-```kotlin
-data class Address(
-    val cep: String,
-    val logradouro: String,
-    val complemento: String,
-    val bairro: String,
-    val localidade: String,
-    val uf: String,
-    val erro: Boolean? = null
-)
-```
-
-## 🔌 Configuração do Retrofit
-
-O Retrofit é configurado através do `ApiFactory`:
-
-```kotlin
-object ApiFactory {
-
-    val apiCep: ApiService = Retrofit.Builder()
-        .baseUrl("https://viacep.com.br/")
-        .addConverterFactory(
-            GsonConverterFactory.create()
-        )
-        .build()
-        .create(ApiService::class.java)
-}
-```
-
-O `GsonConverterFactory` é responsável por converter automaticamente a resposta JSON da API em um objeto `Address`.
-
-## 📡 Serviço da API
-
-A comunicação com a ViaCEP é definida através de uma interface:
-
-```kotlin
-interface ApiService {
-
-    @GET("ws/{cep}/json/")
-    suspend fun getAddress(
-        @Path("cep") cep: String
-    ): Address
-}
-```
-
-O `@Path` permite inserir o CEP informado pelo usuário diretamente na URL da requisição.
-
-## 🎯 Objetivos do projeto
-
-Este projeto tem como objetivo praticar:
 
 * Consumo de APIs REST no Android
 * Requisições HTTP com Retrofit
