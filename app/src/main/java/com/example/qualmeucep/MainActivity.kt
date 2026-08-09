@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.qualmeucep.ui.theme.QUALMEUCEPTheme
+import com.example.qualmeucep.ui.theme.screen.SearchScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,11 +20,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             QUALMEUCEPTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
+                SearchScreen()
                 }
             }
         }
     }
-}
+
 
